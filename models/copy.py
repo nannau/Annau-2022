@@ -46,36 +46,20 @@ runs = {
 }
 
 for region in runs:
+    subprocess.run(["echo", f"Starting transfer of {region}"])
     for model in runs[region]:
         enum, hc = runs[region][model]
         # Move generator models over
-        subprocess.run(["mkdir", "-p", f"/home/nannau/nvmeblack/Annau-2022/models/store/{hc}"])
-        subprocess.run([
-            "cp",
-            "-r",
-            "-u",
-            f"/home/nannau/msc/Fall_2021/DoWnGAN/DoWnGAN/mlflow_experiments/{enum}/{hc}/artifacts/Generator/Generator_999", 
-            f"/home/nannau/nvmeblack/Annau-2022/models/store/{hc}/"]
-        )
-        subprocess.run([
-            "mv",
-            f"/home/nannau/nvmeblack/Annau-2022/models/store/{hc}/Generator_999",
-            f"/home/nannau/nvmeblack/Annau-2022/models/store/{hc}/Generator"
-            ]
-        )
+        nvmepath = f"/home/nannau/nvmeblack/Annau-2022/models/store/{hc}"
+        if subprocess.call(["test", "-e", nvmepath]) == 0:
+            subprocess.run(["echo", "Removing existing directories!"])
+            subprocess.run(["rm", "-rf", nvmepath])
 
-        # Move critic models over
+        # subprocess.run(["mkdir", nvmepath])
         subprocess.run([
-            "cp",
-            "-r",
-            "-u",
-            f"/home/nannau/msc/Fall_2021/DoWnGAN/DoWnGAN/mlflow_experiments/{enum}/{hc}/artifacts/Critic/Critic_999",
-            f"/home/nannau/nvmeblack/Annau-2022/models/store/{hc}"]
-        )
-        subprocess.run([
-            "mv",
-            f"/home/nannau/nvmeblack/Annau-2022/models/store/{hc}/Critic_999",
-            f"/home/nannau/nvmeblack/Annau-2022/models/store/{hc}/Critic"
-            ]
+            "rsync",
+            "-avR",
+            f"/home/nannau/msc/Fall_2021/DoWnGAN/DoWnGAN/mlflow_experiments/{enum}/{hc}/artifacts/./Generator/Generator_999", 
+            nvmepath]
         )
 
