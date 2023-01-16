@@ -1,0 +1,62 @@
+from typing import Generator
+
+import numpy as np
+import scipy.stats as stats
+import torch
+
+"""This module contains functions that calculate the
+radially averaged power spectral density (RASPD)
+"""
+
+
+def calculate_2dft(image: np.ndarray) -> np.ndarray:
+    """Computes the fourier transform and returns the amplitudes"""
+    # fourier_image = np.fft.fftn(image)
+    fourier_image = torch.fft.fftn(image)
+    # fourier_amplitudes = np.abs(fourier_image)**2
+    fourier_amplitudes = torch.abs(fourier_image)**2
+
+    return fourier_amplitudes.flatten()
+
+
+def define_wavenumers(hr_dim: int) -> np.ndarray:
+    """Defines the wavenumbers for the RASPD"""
+    kfreq = np.fft.fftfreq(hr_dim)*hr_dim
+    kfreq2D = np.meshgrid(kfreq, kfreq)
+    knrm = np.sqrt(kfreq2D[0]**2 + kfreq2D[1]**2)
+    return knrm.flatten()
+
+
+def compute_rapsd(hr_field: Generator, var_names: dict = {0:"u10", 1:"v10"}) -> np.ndarray:
+    """Computes the RASPD for a given super-resolution model"""
+
+    var_rapsd = {}
+    [var_rapsd.setdefault(x, []) for x in var_names.values()]
+    var_rapsd_avg = {}
+
+    for x in hr_field:
+        knrm = define_wavenumers(x.shape[-1])
+        # Bins to average the spectra over
+        kbins = np.arange(0.5, x.shape[-1]//2+1, 1.)
+        # "Interpolate" at the bin centers
+        kvals = 0.5 * (kbins[1:] + kbins[:-1])
+
+        for var_idx, var_name in var_names.items():
+            wind_2d = calculate_2dft(x[0, var_idx]).cpu().detach().numpy()
+
+            # This ends up compute the radial average
+            average_bins, _, _ = stats.binned_statistic(
+                knrm, wind_2d, statistic="mean", bins=kbins
+                )
+
+            # Weight by the surface area in radial average bin
+            average_bins *= np.pi * (kbins[1:]**2 - kbins[:-1]**2)
+
+            # Add to a list -- each element is a RASPD
+            var_rapsd[var_name].append(average_bins)
+        var_rapsd_avg["k"] = kvals
+
+    [var_rapsd_avg.setdefault(key, np.mean(np.array(var_rapsd[key]), axis=0)) for key in var_rapsd]
+
+
+    return var_rapsd_avg
