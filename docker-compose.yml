@@ -4,26 +4,52 @@
 # Run and attach to container 
 # docker run -p 8888:8888 --gpus all --ipc=host --network host --ulimit memlock=-1 --ulimit stack=67108864 -it -v $(pwd):/workspace/ --rm annau-2022:latest
 
-version: '3.4'
+# version: '3.4'
+# services:
+#     run:
+#         build:
+#             context: .
+#             dockerfile: Dockerfile
+#             network: host
+#         # network_mode: host
+#         ulimits:
+#             memlock: -1
+#             stack: 67108864
+#         volumes:
+#             - './:/workspace/'
+#         image: annau-2022:latest
+#         ports:
+#             - '8888:8888'
+#         deploy:
+#           resources:
+#             reservations:
+#               devices:
+#               - driver: nvidia
+#                 count: 1
+#                 capabilities: [gpu]
+
+
+
+
+version: '2.0'
 services:
-    run:
-        build:
-            context: .
-            dockerfile: Dockerfile
-            network: host
-        # network_mode: host
-        ulimits:
-            memlock: -1
-            stack: 67108864
-        volumes:
-            - './:/workspace/'
-        image: annau-2022:latest
-        ports:
-            - '8888:8888'
-        deploy:
-          resources:
-            reservations:
-              devices:
-              - driver: nvidia
-                count: 1
-                capabilities: [gpu]
+  main:
+    image: annau-2022:v1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      network: host
+    volumes:
+      - './:/workspace/'
+    ports:
+      - 8888:8888
+    ulimits:
+      memlock: -1
+      stack: 67108864
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
