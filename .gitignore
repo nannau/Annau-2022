@@ -1,0 +1,8 @@
+#store/
+Annau2022/data
+Annau2022/__pycache__
+Annau2022/.ipynb_checkpoints
+.ipynb_checkpoints
+Annau2022/data/*.nc
+Annau2022/data/processed.zip
+.Trash-0/
