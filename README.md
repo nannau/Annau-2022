@@ -39,8 +39,8 @@ python3 -m venv myvenv
 source myvenv/bin/activate
 ```
 ```bash
-pip install -e 
-.```
+pip install -e .
+```
 ```bash
 pip install -r requirements.txt
 ```
