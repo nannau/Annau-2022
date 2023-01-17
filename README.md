@@ -32,11 +32,21 @@ docker compose up --build
 ```
 ---
 ## Without Docker Locally
-```python3 -m venv myvenv```
-```source myvenv/bin/activate```
-```pip install -e .```
-```pip install -r requirements.txt```
-```jupyter lab```
+```bash
+python3 -m venv myvenv
+```
+```bash
+source myvenv/bin/activate
+```
+```bash
+pip install -e 
+.```
+```bash
+pip install -r requirements.txt
+```
+```bash
+jupyter lab
+```
 
 ## Accessing Jupyter Lab
 Each option will run a Jupyter Lab server. The process to connect is the same for each:
