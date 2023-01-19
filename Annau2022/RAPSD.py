@@ -27,12 +27,16 @@ def define_wavenumers(hr_dim: int) -> np.ndarray:
     return knrm.flatten()
 
 
-def compute_rapsd(hr_field: Generator, var_names: dict = {0:"u10", 1:"v10"}) -> np.ndarray:
+def compute_rapsd(hr_field: Generator, var_ref: dict = None) -> np.ndarray:
     """Computes the RASPD for a given super-resolution model"""
 
+    if var_ref is None:
+        var_ref = {"u10":0, "v10":1}
+
     var_rapsd = {}
-    [var_rapsd.setdefault(x, []) for x in var_names.values()]
+    [var_rapsd.setdefault(x, []) for x in var_ref]
     var_rapsd_avg = {}
+
 
     for x in hr_field:
         knrm = define_wavenumers(x.shape[-1])
@@ -41,7 +45,7 @@ def compute_rapsd(hr_field: Generator, var_names: dict = {0:"u10", 1:"v10"}) -> 
         # "Interpolate" at the bin centers
         kvals = 0.5 * (kbins[1:] + kbins[:-1])
 
-        for var_idx, var_name in var_names.items():
+        for var_name, var_idx in var_ref.items():
             wind_2d = calculate_2dft(x[0, var_idx]).cpu().detach().numpy()
 
             # This ends up compute the radial average
@@ -51,12 +55,15 @@ def compute_rapsd(hr_field: Generator, var_names: dict = {0:"u10", 1:"v10"}) -> 
 
             # Weight by the surface area in radial average bin
             average_bins *= np.pi * (kbins[1:]**2 - kbins[:-1]**2)
-
             # Add to a list -- each element is a RASPD
             var_rapsd[var_name].append(average_bins)
+
         var_rapsd_avg["k"] = kvals
 
-    [var_rapsd_avg.setdefault(key, np.mean(np.array(var_rapsd[key]), axis=0)) for key in var_rapsd]
+    for key in var_ref:
+        var_rapsd_avg[key] = np.mean(np.array(var_rapsd[key]), axis=0)
+        # var_rapsd_avg[key] = np
+    # [var_rapsd_avg.setdefault(key, np.mean(np.array(var_rapsd[key]), axis=0)) for key in var_names]
 
 
     return var_rapsd_avg
