@@ -1,0 +1,5 @@
+mlflow
+cloudpickle==2.1.0
+downgan==0.1.dev0
+torch==1.12.1
+tqdm==4.64.0
