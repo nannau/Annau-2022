@@ -1,5 +1,5 @@
 from Annau2022.models.generator import Generator
-from typing import Tuple, Optional
+from typing import Tuple
 
 import pydantic
 import mlflow
@@ -13,7 +13,7 @@ class SRModelData(pydantic.BaseModel):
     sr_model_name: str
     exp_id: str
     parent_path: str = "/workspace/Annau2022/models/store/"
-    data_path: str = "/workspace/Annau2022/data/"
+    data_path: str
     generator_param_dim: Tuple[int, int, int, int] = (16, 128, 7, 2)
     device: str = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -53,7 +53,8 @@ class SRModelData(pydantic.BaseModel):
 
 
 class GeneratorInputMismatchError(Exception):
-    """Custom error for when the input tensor to the generator is the wrong shape"""
+    """Custom error for when the input tensor to the generator is the
+    wrong shape"""
     def __init__(self, value: str, message: str) -> None:
         self.value = value
         self.message = message
@@ -78,20 +79,23 @@ class SuperResolver(pydantic.BaseModel):
         nc = values["model"].nc
 
         if len(values["lr"].shape) != 4:
-            raise ValueError("Input tensor must have shape batch_size, nc, coarse_dim_x, coarse_dim_y")
+            raise ValueError(
+                "Input tensor must have shape batch_size, nc, x, y"
+                )
 
         batch_size, nc_tensor, coarse_dim_x, coarse_dim_y = values["lr"].shape
 
         if (nc_tensor, coarse_dim_x, coarse_dim_y) != (nc, coarse_dim, coarse_dim):
             raise GeneratorInputMismatchError(
                 value=values["lr"],
-                message=f"Input tensor contains dimensions need to match Generator of {nc, coarse_dim, coarse_dim} but received {nc_tensor, coarse_dim_x, coarse_dim_y} must have shape batch_size, nc, coarse_dim_x, coarse_dim_y"
+                message=f"Input tensor does not match model! {nc, coarse_dim, coarse_dim} but received {nc_tensor, coarse_dim_x, coarse_dim_y} must have shape batch_size, nc, coarse_dim_x, coarse_dim_y"
             )
 
         return values
 
     def load_stats_json(self) -> torch.Tensor:
-        """Loads the mean and std from the stats.json file and normalises the input tensor"""
+        """Loads the mean and std from the stats.json
+        file and normalises the input tensor"""
         with open(self.stats_path, 'r') as f:
             stats = json.load(f)
         return stats
