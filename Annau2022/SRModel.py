@@ -66,7 +66,7 @@ class SuperResolver(pydantic.BaseModel):
     region: str
     lr: torch.Tensor
     hr: torch.Tensor
-    model: torch.nn.Module
+    G: torch.nn.Module
     batch_size: int = 1
     device: str = "cuda" if torch.cuda.is_available() else "cpu"
     stats_path = "/workspace/Annau2022/data/stats.json"
@@ -75,8 +75,8 @@ class SuperResolver(pydantic.BaseModel):
     @pydantic.root_validator(pre=True)
     @classmethod
     def check_lr_shape(cls, values):
-        coarse_dim = values["model"].coarse_dim
-        nc = values["model"].nc
+        coarse_dim = values["G"].coarse_dim
+        nc = values["G"].nc
 
         if len(values["lr"].shape) != 4:
             raise ValueError(
@@ -111,22 +111,26 @@ class SuperResolver(pydantic.BaseModel):
     def super_resolve(self) -> torch.Tensor:
         """Super resolves the input tensor using the model and denormalizes it"""
         stats = self.load_stats_json()
-
-        dataset = torch.utils.data.TensorDataset(self.lr)
-        loader = torch.utils.data.DataLoader(dataset, self.batch_size, shuffle=False)
-
-        for batch_idx, lr_batch in enumerate(loader):
-            yield self.denormalise(self.model(lr_batch[0]), stats)
+        batches = torch.split(torch.arange(0, self.lr.shape[0]), self.batch_size)
+        
+        fake = self.hr.clone()
+        
+        for b in batches:
+            fake[b, ...] = self.denormalise(self.G(self.lr[b, ...].detach().to(self.device)).detach(), stats)
+    
+        return fake
 
     def ground_truth(self) -> torch.Tensor:
         """Super resolves the input tensor using the model and denormalizes it"""
         stats = self.load_stats_json()
 
-        dataset = torch.utils.data.TensorDataset(self.hr)
-        loader = torch.utils.data.DataLoader(dataset, self.batch_size, shuffle=False)
+        # dataset = torch.utils.data.TensorDataset(self.hr)
+        # loader = torch.utils.data.DataLoader(dataset, self.batch_size, shuffle=False)
 
-        for batch_idx, hr_batch in enumerate(loader):
-            yield self.denormalise(hr_batch[0], stats)
+        # for batch_idx, hr_batch in enumerate(loader):
+            # yield self.denormalise(hr_batch[0], stats)
+        return self.denormalise(self.hr, stats)
+
 
     class Config:
         arbitrary_types_allowed = True
