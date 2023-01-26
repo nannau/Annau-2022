@@ -2,7 +2,7 @@ from typing import Generator
 
 import numpy as np
 import scipy.stats as stats
-import torch
+
 
 """This module contains functions that calculate the
 radially averaged power spectral density (RASPD)
@@ -31,7 +31,7 @@ def compute_rapsd(hr_field: Generator, var_ref: dict = None) -> np.ndarray:
     """Computes the RASPD for a given super-resolution model"""
 
     if var_ref is None:
-        var_ref = {"u10":0, "v10":1}
+        var_ref = {"u10": 0, "v10": 1}
 
     var_rapsd = {}
     [var_rapsd.setdefault(x, []) for x in var_ref]
@@ -56,9 +56,11 @@ def compute_rapsd(hr_field: Generator, var_ref: dict = None) -> np.ndarray:
             # Add to a list -- each element is a RASPD
             var_rapsd[var_name].append(average_bins)
 
-    var_rapsd_avg = {}
-    var_rapsd_avg["k"] = kvals
+    var_rapsd_avg = {"k": kvals}
     for var_name in var_ref:
-        var_rapsd_avg[var_name] = np.mean(np.array(var_rapsd[var_name]), axis=0)
+        var_rapsd_avg[var_name] = np.mean(
+            np.array(var_rapsd[var_name]),
+            axis=0
+        )
 
     return var_rapsd_avg
