@@ -34,7 +34,7 @@
 version: '2.0'
 services:
   main:
-    image: annau-2022:v1.0
+    image: annau-2023:v1.0
     build:
       context: .
       dockerfile: Dockerfile
