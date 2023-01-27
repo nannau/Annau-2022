@@ -1,4 +1,4 @@
-from Annau2022.models.generator import Generator
+from Annau2023.models.generator import Generator
 from typing import Tuple
 
 import pydantic
@@ -12,7 +12,7 @@ class SRModelData(pydantic.BaseModel):
     region: str
     sr_model_name: str
     exp_id: str
-    parent_path: str = "/workspace/Annau2022/models/store/"
+    parent_path: str = "/workspace/Annau2023/models/store/"
     data_path: str
     generator_param_dim: Tuple[int, int, int, int] = (16, 128, 7, 2)
     device: str = "cuda" if torch.cuda.is_available() else "cpu"
@@ -69,7 +69,7 @@ class SuperResolver(pydantic.BaseModel):
     G: torch.nn.Module
     batch_size: int = 1
     device: str = "cuda" if torch.cuda.is_available() else "cpu"
-    stats_path = "/workspace/Annau2022/data/stats.json"
+    stats_path = "/workspace/Annau2023/data/stats.json"
 
 
     @pydantic.root_validator(pre=True)

@@ -1,11 +1,11 @@
 from setuptools import setup
 
 setup(
-   name='Annau2022',
+   name='Annau2023',
    version='0.1.0',
    author='Nic Annau',
    author_email='nicannau@gmail.com ',
-   packages=['Annau2022'],
+   packages=['Annau2023'],
    # scripts=[
    #    'models/generator.py',
    #    'models/critic.py',
