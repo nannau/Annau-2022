@@ -31,7 +31,6 @@ COPY ./ /workspace/
 RUN apt-get update && apt-get install -y \
     python3-pip \
     apt-utils \
-    vim \
     git 
 
 # alias python='python3'
@@ -40,14 +39,26 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 RUN pip install \
     numpy \
     torch \
-    torchvision \
-    torchaudio \
     jupyterlab
 
 RUN pip install -e /workspace/.
 RUN pip install -r /workspace/requirements.txt
 
+RUN jupyter notebook --generate-config
+COPY ./jupyter_notebook_config.py ~/.jupyter/jupyter_notebook_config.py
+
+
 RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install dvipng texlive-latex-extra texlive-fonts-recommended cm-super
 
-CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root", "--no-browser"]
+# CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root", "--no-browser"]
+# EXPOSE 8888
+
+# Add Tini. Tini operates as a process subreaper for jupyter. This prevents
+# kernel crashes.
+ENV TINI_VERSION v0.6.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
+RUN chmod +x /usr/bin/tini
+ENTRYPOINT ["/usr/bin/tini", "--"]
+
 EXPOSE 8888
+CMD ["jupyter", "lab", "--port=8888", "--no-browser", "--ip=0.0.0.0"]
