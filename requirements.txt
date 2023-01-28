@@ -6,4 +6,5 @@ scipy
 h5netcdf
 tqdm
 geopandas
+xarray
 git+https://github.com/jorge-pessoa/pytorch-msssim.git@master#egg=pytorch-msssim
