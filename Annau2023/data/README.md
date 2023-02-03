@@ -11,3 +11,5 @@ The test data is organized by experiment. The frequency separation data were pre
 * `nfs_pfs` contains contains the data that is preprocessed the same way as the data that was used to train both the PFS GANs (partial frequency separation GANs) and NFS GANs (no frequency separation GANs)
 * `idealized_data` contains the preprocessed files that only use the `u10` and `v10` wind components of either `era` (non idealized) or `wrf` (idealized, coarsened version of the HR data)
 * `shapefiles` used for plotting
+* `metric_evolution` for metric plots
+* `full_domain` for Fig 1 full WRF domain netCDF files
