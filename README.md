@@ -2,7 +2,7 @@
 Analysis and plots for Annau 2022 (in prep.)
 
 # Data availability
-Data is not stored on GitHub by default. A link to the pre-processed tensor files (~12GB) can be found here: [TO DO]
+Data is not stored on GitHub by default. A link to the pre-processed tensor files (~6GB) can be found here: [TO DO]
 
 # A note about GPUs
 I've developed this repo using a GPU. The results might work without one, and I've tried to enable this, but if you run into issues and don't have a GPU, please change the source code to meet your needs.
