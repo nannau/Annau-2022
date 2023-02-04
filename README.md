@@ -8,11 +8,13 @@ Analysis and plots for [the paper]() (in prep.)
 Data is not stored on GitHub because of repo size limits. Instead, you can find the entire repo plus data hosted by Zenodo. However, an image with the data is hosted on Dockerhub. Please see the instructions below for ways to access these results.
 
 ## A note about GPUs
-I've developed this repo using a GPU. The results might work without one, and I've tried to enable this, but if you run into issues and don't have a GPU, please change the source code to meet your needs. TL;DR I can't guarantee that this code will run on all hardware.
+I can't guarantee that this code will run on all hardware.
+
+I've developed this repo using a GPU. The results might work without one, and I've tried to enable this, but if you run into issues and don't have a GPU, please change the source code to meet your needs.
 
 # Getting started
 
-You have a few options on how to get the repo working on your machine.
+You have a few options on how to get the repo working on your machine. I recommend using the docker image from Dockerhub because it includes the relevant dataset, and requires the least configuration to reproduce our results.
 
 ## From DockerHub [recommended]
 
