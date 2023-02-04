@@ -1,6 +1,6 @@
-# Annau 2023
+# Annau, Cannon, and Monahan 2023
 
-Analysis and plots for Annau 2022 (in prep.)
+Analysis and plots for [the paper]() (in prep.)
 
 ## Data availability
 Data is not stored on GitHub because of repo size limits. Instead, you can find the entire repo plus data hosted by Zenodo. However, an image with the data is hosted on Dockerhub. Please see the instructions below for ways to access these results.
