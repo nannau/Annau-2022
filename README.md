@@ -16,9 +16,9 @@ I've developed this repo using a GPU. The results might work without one, and I'
 
 # Getting started
 
-You have a few options on how to get the repo working on your machine. I recommend using the docker image from Dockerhub because it includes the relevant dataset, and requires the least configuration to reproduce our results. Please do not use this repo and assume it is secure. I am not a security expert! This repo is intended only to provide reproducibility to my results so use it responsibly.
+You have a few options on how to get the repo working on your machine. I recommend using the docker image from Docker Hub because it includes the relevant dataset, and requires the least configuration to reproduce our results. Please do not use this repo and assume it is secure. I am not a security expert! This repo is intended only to provide reproducibility to my results so use it responsibly.
 
-## From DockerHub [recommended]
+## From Docker Hub [recommended]
 
 ```bash
 docker run -p 8888:8888 --gpus all --ipc=host --network host --ulimit memlock=-1 --ulimit stack=67108864 -it --rm nannau/annau-2023:latest
