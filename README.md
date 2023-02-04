@@ -1,20 +1,17 @@
-# Annau-2022
+# Annau 2023
+
 Analysis and plots for Annau 2022 (in prep.)
 
-# Data availability
-Data is not stored on GitHub by default. A link to the pre-processed tensor files (~6GB) can be found here: [TO DO]
+## Data availability
+Data is not stored on GitHub because of repo size limits. Instead, you can find the entire repo plus data hosted by Zenodo. However, an image with the data is hosted on Dockerhub. Please see the instructions below for ways to access these results.
 
-# A note about GPUs
-I've developed this repo using a GPU. The results might work without one, and I've tried to enable this, but if you run into issues and don't have a GPU, please change the source code to meet your needs.
-
----
+## A note about GPUs
+I've developed this repo using a GPU. The results might work without one, and I've tried to enable this, but if you run into issues and don't have a GPU, please change the source code to meet your needs. TL;DR I can't guarantee that this code will run on all hardware.
 
 # Getting started
 
----
-
 ## Set Jupyter Password
-To make accessing Jupyter Lab easier, I've enabled setting a Jupyter password as an environment variable on the host machine. However, please do not use this repo and assume it is secure. I am not a security expert. This repo is just to provide reproducibility to my results. Set a local environment variable as:
+To make accessing JupyterLab easier, I've enabled setting a Jupyter password as an environment variable on the host machine. However, please do not use this repo and assume it is secure. I am not a security expert! This repo is intended only to provide reproducibility to my results so use it responsibly. Set a local environment variable as:
 
 ```bash
 export JUPYTER_PASSWORD=password
@@ -65,5 +62,4 @@ Each option will run a Jupyter Lab server. The process to connect is the same fo
 
 Copy the Jupyter Lab URL from the terminal output. Substitute `hostname` for `localhost`. 
 
-Or go to `localhost:8888` and enter token from terminal output
-
+Or go to `localhost:8888` and enter the token from the terminal output
