@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/584905308.svg)](https://zenodo.org/badge/latestdoi/584905308)
+
 # Annau, Cannon, and Monahan 2023
 
 Analysis and plots for [the paper]() (in prep.)
