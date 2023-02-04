@@ -22,13 +22,7 @@ You have a few options on how to get the repo working on your machine.
 ## From DockerHub [recommended]
 
 ```bash
-docker image pull nannau/annau-2022-stable
-```
-
-Followed by 
-
-```bash
-docker run -p 8888:8888 --gpus all --ipc=host --network host --ulimit memlock=-1 --ulimit stack=67108864 -it -v $(pwd):/workspace/ --rm nannau/annau-2022-stable
+docker run -p 8888:8888 --gpus all --ipc=host --network host --ulimit memlock=-1 --ulimit stack=67108864 -it --rm nannau/annau-2023:latest
 ```
 
 ---
