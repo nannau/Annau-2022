@@ -10,13 +10,6 @@ I've developed this repo using a GPU. The results might work without one, and I'
 
 # Getting started
 
-## Set Jupyter Password
-To make accessing JupyterLab easier, I've enabled setting a Jupyter password as an environment variable on the host machine. However, please do not use this repo and assume it is secure. I am not a security expert! This repo is intended only to provide reproducibility to my results so use it responsibly. Set a local environment variable as:
-
-```bash
-export JUPYTER_PASSWORD=password
-```
-
 You have a few options on how to get the repo working on your machine.
 
 ## From DockerHub [recommended]
@@ -25,9 +18,19 @@ You have a few options on how to get the repo working on your machine.
 docker run -p 8888:8888 --gpus all --ipc=host --network host --ulimit memlock=-1 --ulimit stack=67108864 -it --rm nannau/annau-2023:latest
 ```
 
+Default password is set to `annau2023`.
+
 ---
 
 ## Docker Locally
+
+## Set Jupyter Password
+If building the docker image locally, to make accessing JupyterLab easier, I've enabled setting a Jupyter password as an environment variable on the host machine. However, please do not use this repo and assume it is secure. I am not a security expert! This repo is intended only to provide reproducibility to my results so use it responsibly. Set a local environment variable as:
+
+```bash
+export JUPYTER_PASSWORD=password
+```
+
 In GitHub repo main:
 
 ```bash
