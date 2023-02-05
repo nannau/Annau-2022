@@ -1,8 +1,20 @@
-[![DOI](https://zenodo.org/badge/584905308.svg)](https://zenodo.org/badge/latestdoi/584905308)
-
 # Annau, Cannon, and Monahan 2023
 
 Analysis and plots for [the paper]() (in prep.)
+
+[Docker Hub Image](https://hub.docker.com/r/nannau/annau-2023) analysis+data+environment
+
+[![Docker Pulls](https://badgen.net/docker/pulls/trueosiris/godaddypy?icon=docker&label=pulls)](https://hub.docker.com/r/nannau/annau-2023)
+[![Docker Stars](https://badgen.net/docker/stars/trueosiris/godaddypy?icon=docker&label=stars)](https://hub.docker.com/r/nannau/annau-2023)
+[![Docker Image Size](https://badgen.net/docker/size/trueosiris/godaddypy?icon=docker&label=image%20size)](https://hub.docker.com/r/nannau/annau-2023)
+
+Analysis only
+
+[![DOI](https://zenodo.org/badge/584905308.svg)](https://zenodo.org/badge/latestdoi/584905308)
+
+Data only
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7604278.svg)](https://doi.org/10.5281/zenodo.7604278)
 
 ## Data availability
 Data is not stored on GitHub because of repo size limits. However, an image with the data is hosted on Dockerhub . If you decide you want to build the Docker image yourself, you can find the entire repo plus data hosted by Zenodo with its own DOI. 
