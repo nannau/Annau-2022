@@ -1,6 +1,5 @@
 # Borrowed from:
 # https://github.com/Lornatang/SRGAN-PyTorch/
-# Adopted to ESRGAN: https://arxiv.org/abs/1809.00219
 
 import torch
 import torch.nn as nn
