@@ -1,5 +1,7 @@
 # Annau, Cannon, and Monahan 2023
 
+## Quick start
+
 Analysis and plots for [the paper]() (in prep.)
 
 [Docker Hub Image](https://hub.docker.com/r/nannau/annau-2023) analysis+data+environment
@@ -17,18 +19,15 @@ Data only
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7604278.svg)](https://doi.org/10.5281/zenodo.7604278)
 
 ## Data availability
-Data is not stored on GitHub because of repo size limits. However, an image with the data is hosted on Dockerhub . If you decide you want to build the Docker image yourself, you can find the entire repo plus data hosted by Zenodo with its own DOI. 
+Data is not stored on GitHub because of repo size limits. Therefore, the analysis code and data are hosted separately. However, an image with the analysis code and data is hosted on Dockerhub in an isolated PyTorch environment. Instructions for use are below, and I recommend using the docker image. If you decide you want to build the Docker image yourself, you can find the entire repo plus data hosted by Zenodo with its own DOI (the Data only DOI).
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7604278.svg)](https://doi.org/10.5281/zenodo.7604278)
 
+## Getting started
 
-## A note about GPUs
-I can't guarantee that this code will run on all hardware.
+You have a few options on how to get the repo working on your machine. I recommend using the docker image from Docker Hub because it includes the relevant dataset, and requires the least configuration to reproduce our results.
 
-I've developed this repo using a GPU. The results might work without one, and I've tried to enable this, but if you run into issues and don't have a GPU, please change the source code to meet your needs.
-
-# Getting started
-
-You have a few options on how to get the repo working on your machine. I recommend using the docker image from Docker Hub because it includes the relevant dataset, and requires the least configuration to reproduce our results. Please do not use this repo and assume it is secure. I am not a security expert! This repo is intended only to provide reproducibility to my results so use it responsibly.
+## A quick word on security
+Please do not use this repo and assume the Jupyter Lab instance running on Docker is secure. I am not a security expert! This repo is intended only to reproduce our results so use it responsibly and don't run it publicly without taking percautions.
 
 ## From Docker Hub [recommended]
 
@@ -42,14 +41,16 @@ The default password is set to `annau2023`.
 
 ## Docker Locally
 
-## Set Jupyter Password
+#### Set Jupyter Password
 If building the docker image locally, to make accessing JupyterLab easier, I've enabled setting a Jupyter password as an environment variable on the host machine. Set a local environment variable as:
 
 ```bash
 export JUPYTER_PASSWORD=password
 ```
 
-In GitHub repo main:
+#### Clone this repo and cd into it
+
+Build docker locally using docker compose with:
 
 ```bash
 docker compose up --build
@@ -78,3 +79,10 @@ Each option will run a Jupyter Lab server. The process to connect is the same fo
 Copy the Jupyter Lab URL from the terminal output. Substitute `hostname` for `localhost`. 
 
 Or go to `localhost:8888` and enter the token from the terminal output
+
+
+## A note about GPUs
+I can't guarantee that this code will run on all hardware.
+
+I've developed this repo using a GPU. The results might work without one, and I've tried to enable this, but if you run into issues and don't have a GPU, please change the source code to meet your needs (i.e. make sure the PyTorch tensors are loaded onto the CPU instead of the GPU). CPU will be much slower. 
+
