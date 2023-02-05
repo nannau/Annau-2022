@@ -19,7 +19,7 @@ Data only
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7604278.svg)](https://doi.org/10.5281/zenodo.7604278)
 
 ## Data availability
-Data is not stored on GitHub because of repo size limits. Therefore, the analysis code and data are hosted separately. However, an image with the analysis code and data is hosted on Dockerhub in an isolated PyTorch environment. Instructions for use are below, and I recommend using the docker image. If you decide you want to build the Docker image yourself, you can find the entire repo plus data hosted by Zenodo with its own DOI (the Data only DOI).
+Data is not stored on GitHub because of repo size limits. Therefore, the analysis code and data are hosted separately. However, an image with the analysis code and data is hosted on Docker Hub in an isolated PyTorch environment. Instructions for use are below, and I recommend using the docker image. If you decide you want to build the Docker image yourself, you can find the entire repo plus data hosted by Zenodo with its own DOI (the Data only DOI).
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7604278.svg)](https://doi.org/10.5281/zenodo.7604278)
 
 ## Getting started
