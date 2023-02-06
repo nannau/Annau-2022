@@ -32,7 +32,7 @@ Please do not use this repo and assume the Jupyter Lab instance running on Docke
 ## From Docker Hub [recommended]
 
 ```bash
-docker run -p 8888:8888 --gpus all --ipc=host --network host --ulimit memlock=-1 --ulimit stack=67108864 -it --rm nannau/annau-2023:latest
+docker run -p 8888:8888 --gpus all --ipc=host --network host --ulimit memlock=-1 --ulimit stack=67108864 -it --rm nannau/annau-2023:v1.2
 ```
 
 The default password is set to `annau2023`. 
