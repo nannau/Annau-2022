@@ -26,6 +26,10 @@ Data is not stored on GitHub because of repo size limits. Therefore, the analysi
 
 You have a few options on how to get the repo working on your machine. I recommend using the docker image from Docker Hub because it includes the relevant dataset, and requires the least configuration to reproduce our results.
 
+## Requirements
+* [Docker](https://docs.docker.com/engine/install/)
+* [NVidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) with `sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit-base`
+
 ## A quick word on security
 Please do not use this repo and assume the Jupyter Lab instance running on Docker is secure. I am not a security expert! This repo is intended only to reproduce our results so use it responsibly and don't run it publicly without taking percautions.
 
