@@ -28,7 +28,7 @@ You have a few options on how to get the repo working on your machine. I recomme
 
 ## Requirements
 * [Docker](https://docs.docker.com/engine/install/)
-* [NVidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) with `sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit-base`
+* [NVidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
 
 ## A quick word on security
 Please do not use this repo and assume the Jupyter Lab instance running on Docker is secure. I am not a security expert! This repo is intended only to reproduce our results so use it responsibly and don't run it publicly without taking percautions.
