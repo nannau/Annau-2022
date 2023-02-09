@@ -22,16 +22,15 @@ Data only
 Data is not stored on GitHub because of repo size limits. Therefore, the analysis code and data are hosted separately. However, an image with the analysis code and data is hosted on Docker Hub in an isolated PyTorch environment. Instructions for use are below, and I recommend using the docker image. If you decide you want to build the Docker image yourself, you can find the entire repo plus data hosted by Zenodo with its own DOI (the Data only DOI).
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7604278.svg)](https://doi.org/10.5281/zenodo.7604278)
 
-## Getting started
-
-You have a few options on how to get the repo working on your machine. I recommend using the docker image from Docker Hub because it includes the relevant dataset, and requires the least configuration to reproduce our results.
 
 ## Requirements
 * [Docker](https://docs.docker.com/engine/install/)
 * [NVidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
 
-## A quick word on security
-Please do not use this repo and assume the Jupyter Lab instance running on Docker is secure. I am not a security expert! This repo is intended only to reproduce our results so use it responsibly and don't run it publicly without taking percautions.
+## Getting started
+
+You have a few options on how to get the repo working on your machine. I recommend using the docker image from Docker Hub because it includes the relevant dataset, and requires the least configuration to reproduce our results.
+
 
 ## From Docker Hub [recommended]
 
@@ -80,12 +79,12 @@ jupyter lab
 ```
 
 ## Accessing Jupyter Lab
-Each option will run a Jupyter Lab server. The process to connect is the same for each:
+Each option will run a Jupyter Lab server. The process to connect may change for each:
 
-Copy the Jupyter Lab URL from the terminal output. Substitute `hostname` for `localhost`. 
+Using Docker, go to [localhost:8888](http://localhost:8888) and enter `annau2023` as the password. 
 
-Or go to `localhost:8888` and enter the token from the terminal output
-
+## A quick word on security
+Please do not use this repo and assume the Jupyter Lab instance running on Docker is secure. I am not a security expert! This repo is intended only to reproduce our results so use it responsibly and don't run it publicly without taking percautions.
 
 ## A note about GPUs
 I can't guarantee that this code will run on all hardware.
