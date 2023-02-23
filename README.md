@@ -81,7 +81,9 @@ jupyter lab
 ## Accessing Jupyter Lab
 Each option will run a Jupyter Lab server. The process to connect may change for each:
 
-Using Docker, go to [localhost:8888](http://localhost:8888) and enter `annau2023` as the password. 
+Using Docker, go to [http://localhost:8888/lab?](http://localhost:8888/lab?) and enter `annau2023` as the password.
+
+You might have to refresh if the files don't show up immediately.
 
 ## A quick word on security
 Please do not use this repo and assume the Jupyter Lab instance running on Docker is secure. I am not a security expert! This repo is intended only to reproduce our results so use it responsibly and don't run it publicly without taking percautions.
