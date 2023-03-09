@@ -2,7 +2,7 @@
 
 ## Quick start
 
-Analysis and plots for [the paper]() (in prep.)
+Analysis and plots for [the preprint](https://arxiv.org/abs/2302.08720). 
 
 [Docker Hub Image](https://hub.docker.com/r/nannau/annau-2023) analysis+data+environment
 
