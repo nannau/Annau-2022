@@ -2,7 +2,24 @@
 
 ## Quick start
 
-Analysis and plots for [the preprint](https://arxiv.org/abs/2302.08720). 
+Analysis and plots for [the paper](https://journals.ametsoc.org/view/journals/aies/2/4/AIES-D-23-0015.1.xml). 
+
+## Cite the paper
+```
+@article { AlgorithmicHallucinationsofNearSurfaceWindsStatisticalDownscalingwithGenerativeAdversarialNetworkstoConvectionPermittingScales,
+      author = "Nicolaas J. Annau and Alex J. Cannon and Adam H. Monahan",
+      title = "Algorithmic Hallucinations of Near-Surface Winds: Statistical Downscaling with Generative Adversarial Networks to Convection-Permitting Scales",
+      journal = "Artificial Intelligence for the Earth Systems",
+      year = "2023",
+      publisher = "American Meteorological Society",
+      address = "Boston MA, USA",
+      volume = "2",
+      number = "4",
+      doi = "10.1175/AIES-D-23-0015.1",
+      pages=      "e230015",
+      url = "https://journals.ametsoc.org/view/journals/aies/2/4/AIES-D-23-0015.1.xml"
+}
+```
 
 [Docker Hub Image](https://hub.docker.com/r/nannau/annau-2023) analysis+data+environment
 
